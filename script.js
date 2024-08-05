@@ -1,10 +1,10 @@
 const images = [
-    "/moxiecover.png",
-    "/moxie2.png",
-    "/moxie3.png",
-    "/moxie4.png",
-    "/moxie5.png",
-    "/moxie6.png"
+    "https://www.aaronvick.com/Moxie/moxiecover.png",
+    "https://www.aaronvick.com/Moxie/moxie2.png",
+    "https://www.aaronvick.com/Moxie/moxie3.png",
+    "https://www.aaronvick.com/Moxie/moxie4.png",
+    "https://www.aaronvick.com/Moxie/moxie5.png",
+    "https://www.aaronvick.com/Moxie/moxie6.png"
 ];
 
 let currentIndex = 0;
