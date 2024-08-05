@@ -16,13 +16,16 @@ function updateImage() {
     const backButton = document.getElementById('backButton');
     const nextButton = document.getElementById('nextButton');
 
-    backButton.style.display = currentIndex === 0 ? 'none' : 'inline-block';
+    if (currentIndex === 0) {
+        backButton.style.display = 'none';
+    } else {
+        backButton.style.display = 'inline-block';
+    }
 
     if (currentIndex === images.length - 1) {
         nextButton.innerText = 'Check Your Moxie';
         nextButton.onclick = () => window.location.href = 'https://moxie-frames.airstack.xyz/ctar';
         
-        // Add Aaron's Token button when on the last image
         const tokenButton = document.createElement('button');
         tokenButton.innerText = "Aaron's Token";
         tokenButton.onclick = () => window.location.href = 'https://moxie-frames.airstack.xyz/sufta?t=235';
@@ -35,7 +38,6 @@ function updateImage() {
         nextButton.innerText = 'Next';
         nextButton.onclick = nextImage;
         
-        // Remove Aaron's Token button if not on the last image
         const tokenButton = document.getElementById('tokenButton');
         if (tokenButton) {
             tokenButton.remove();
