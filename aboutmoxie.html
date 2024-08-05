@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="fc:frame" content="vNext" />
+    <meta property="fc:frame:image" content="/moxiecover.png" />
+    <meta property="og:image" content="/moxiecover.png" />
+    <meta property="fc:frame:button:1" content="Next" />
+    <meta property="fc:frame:button:1:action" content="link" />
+    <meta property="fc:frame:button:1:target" content="#section2" />
+    <title>How To Earn Moxie</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .nav-buttons a {
+            text-decoration: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .section {
+            display: none;
+        }
+        .section:target {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>How To Earn Moxie</h1>
+
+    <div id="section1" class="section" style="display: block;">
+        <img src="/moxiecover.png" alt="Image 1">
+        <div class="nav-buttons">
+            <a href="#section2"><button>Next</button></a>
+        </div>
+    </div>
+
+    <div id="section2" class="section">
+        <img src="/moxie2.png" alt="Image 2">
+        <div class="nav-buttons">
+            <a href="#section1"><button>Back</button></a>
+            <a href="#section3"><button>Next</button></a>
+        </div>
+    </div>
+
+    <div id="section3" class="section">
+        <img src="/moxie3.png" alt="Image 3">
+        <div class="nav-buttons">
+            <a href="#section2"><button>Back</button></a>
+            <a href="#section4"><button>Next</button></a>
+        </div>
+    </div>
+
+    <div id="section4" class="section">
+        <img src="/moxie4.png" alt="Image 4">
+        <div class="nav-buttons">
+            <a href="#section3"><button>Back</button></a>
+            <a href="#section5"><button>Next</button></a>
+        </div>
+    </div>
+
+    <div id="section5" class="section">
+        <img src="/moxie5.png" alt="Image 5">
+        <div class="nav-buttons">
+            <a href="#section4"><button>Back</button></a>
+            <a href="#section6"><button>Next</button></a>
+        </div>
+    </div>
+
+    <div id="section6" class="section">
+        <img src="/moxie6.png" alt="Image 6">
+        <div class="nav-buttons">
+            <a href="#section5"><button>Back</button></a>
+            <a href="https://moxie-frames.airstack.xyz/ctar" target="_self"><button>Check Your Moxie</button></a>
+            <a href="https://moxie-frames.airstack.xyz/sufta?t=235" target="_self"><button>Aaron's Token</button></a>
+        </div>
+    </div>
+
+    <script>
+        // Ensure the first section is displayed by default if no hash is present in the URL
+        if (!window.location.hash) {
+            window.location.hash = '#section1';
+        }
+    </script>
+</body>
+</html>
