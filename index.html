@@ -113,6 +113,8 @@
             if (currentIndex < images.length - 1) {
                 currentIndex++;
                 updateImage();
+            } else {
+                submitPostRequest('https://about-moxie.vercel.app/moxie2');
             }
         }
 
@@ -129,6 +131,36 @@
 
         function aaronFT() {
             window.location.href = 'https://moxie-frames.airstack.xyz/sufta?t=235';
+        }
+
+        function submitPostRequest(url) {
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    frame_url: 'https://about-moxie.vercel.app/',
+                    button_index: 1,
+                    cast_id: 'your_cast_id', // Replace with actual cast ID if available
+                    input_text: '',
+                    state: '',
+                    transaction_id: '',
+                    address: ''
+                })
+            }).then(response => {
+                if (response.ok) {
+                    response.text().then(text => {
+                        document.open();
+                        document.write(text);
+                        document.close();
+                    });
+                } else {
+                    console.error('POST request failed:', response.statusText);
+                }
+            }).catch(error => {
+                console.error('Error during POST request:', error);
+            });
         }
 
         window.onload = () => {
