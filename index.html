@@ -12,41 +12,6 @@
     <meta property="fc:frame:button:2:action" content="link" />
     <meta property="fc:frame:button:2:target" content="https://moxie.xyz" />
     <title>How To Earn Moxie</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        .nav-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .nav-buttons button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        .nav-buttons button:hover {
-            background-color: #0056b3;
-        }
-    </style>
 </head>
 <body>
     <h1>How To Earn Moxie</h1>
@@ -55,23 +20,5 @@
         <button onclick="window.open('https://moxie.xyz', '_blank')">Moxie.xyz</button>
         <button onclick="nextFrame()">Next</button>
     </div>
-    <script>
-        function nextFrame() {
-            fetch('https://about-moxie.vercel.app/api/nextFrame', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ action: 'next' }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.image) {
-                    document.getElementById('moxieImage').src = data.image;
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        }
-    </script>
 </body>
 </html>
