@@ -41,16 +41,18 @@
             gap: 10px;
             margin-top: 20px;
         }
-        .nav-buttons button {
+        .nav-buttons a {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
             background-color: #007BFF;
             color: white;
+            text-decoration: none;
             border: none;
             border-radius: 5px;
+            display: inline-block;
         }
-        .nav-buttons button:hover {
+        .nav-buttons a:hover {
             background-color: #0056b3;
         }
         .hidden {
@@ -62,10 +64,10 @@
     <h1>How To Earn Moxie</h1>
     <img id="moxieImage" src="https://www.aaronvick.com/Moxie/moxiecover.png" alt="Moxie Cover Image">
     <div class="nav-buttons">
-        <button id="backButton" class="hidden" onclick="prevImage()">Back</button>
-        <button id="nextButton" onclick="nextImage()">Next</button>
-        <button id="checkMoxieButton" onclick="checkMoxie()">Check Your Moxie</button>
-        <button id="aaronFTButton" class="hidden" onclick="aaronFT()">Aaron's FT</button>
+        <a id="backButton" class="hidden" href="#" onclick="prevImage()">Back</a>
+        <a id="nextButton" href="#" onclick="nextImage()">Next</a>
+        <a id="checkMoxieButton" href="https://moxie-frames.airstack.xyz/ctar" target="_self">Check Your Moxie</a>
+        <a id="aaronFTButton" class="hidden" href="https://moxie-frames.airstack.xyz/sufta?t=235" target="_self">Aaron's FT</a>
     </div>
     <script>
         const images = [
@@ -116,14 +118,6 @@
                 currentIndex--;
                 updateImage();
             }
-        }
-
-        function checkMoxie() {
-            window.location.href = 'https://moxie-frames.airstack.xyz/ctar';
-        }
-
-        function aaronFT() {
-            window.location.href = 'https://moxie-frames.airstack.xyz/sufta?t=235';
         }
 
         window.onload = () => {
