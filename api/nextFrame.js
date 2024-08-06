@@ -1,7 +1,6 @@
 export default function handler(req, res) {
   if (req.method === 'POST') {
     // Handle the POST request
-    // You should implement the logic to serve the next frame here
     res.status(200).json({
       frames: [
         {
