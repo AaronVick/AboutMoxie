@@ -9,7 +9,7 @@
     <meta property="fc:frame:post_url" content="https://about-moxie.vercel.app/api/frame-handler" />
     <meta property="fc:frame:button:1" content="Next" />
     <meta property="fc:frame:button:1:action" content="post" />
-    <meta property="fc:frame:button:1:target" content="https://about-moxie.vercel.app/api/moxie2" />
+    <meta property="fc:frame:button:1:target" content="nextFrame" />
     <meta property="fc:frame:button:2" content="Moxie.xyz" />
     <meta property="fc:frame:button:2:action" content="link" />
     <meta property="fc:frame:button:2:target" content="https://moxie.xyz" />
@@ -88,14 +88,18 @@
             const checkMoxieButton = document.getElementById('checkMoxieButton');
             const aaronFTButton = document.getElementById('aaronFTButton');
 
+            // Show or hide the back button based on the current index
             if (currentIndex === 0) {
-                backButton.textContent = "Moxie.xyz";
-                backButton.onclick = () => window.location.href = 'https://moxie.xyz';
+                backButton.classList.remove('hidden');
+                backButton.textContent = 'Moxie.xyz';
+                backButton.onclick = function() { window.location.href = 'https://moxie.xyz'; };
             } else {
-                backButton.textContent = "Back";
-                backButton.onclick = () => prevImage();
+                backButton.classList.remove('hidden');
+                backButton.textContent = 'Back';
+                backButton.onclick = function() { prevImage(); };
             }
 
+            // Update the buttons based on the current index
             if (currentIndex === images.length - 1) {
                 nextButton.classList.add('hidden');
                 aaronFTButton.classList.remove('hidden');
