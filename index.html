@@ -88,18 +88,13 @@
             const checkMoxieButton = document.getElementById('checkMoxieButton');
             const aaronFTButton = document.getElementById('aaronFTButton');
 
-            // Show or hide the back button based on the current index
             if (currentIndex === 0) {
-                backButton.innerHTML = "Moxie.xyz";
-                backButton.onclick = () => window.location.href = 'https://moxie.xyz';
-                backButton.classList.remove('hidden');
+                backButton.classList.add('hidden');
             } else {
-                backButton.innerHTML = "Back";
-                backButton.onclick = prevImage;
                 backButton.classList.remove('hidden');
+                backButton.textContent = 'Back';
             }
 
-            // Update the buttons based on the current index
             if (currentIndex === images.length - 1) {
                 nextButton.classList.add('hidden');
                 aaronFTButton.classList.remove('hidden');
@@ -113,8 +108,6 @@
             if (currentIndex < images.length - 1) {
                 currentIndex++;
                 updateImage();
-            } else {
-                submitPostRequest('https://about-moxie.vercel.app/moxie2');
             }
         }
 
@@ -131,36 +124,6 @@
 
         function aaronFT() {
             window.location.href = 'https://moxie-frames.airstack.xyz/sufta?t=235';
-        }
-
-        function submitPostRequest(url) {
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    frame_url: 'https://about-moxie.vercel.app/',
-                    button_index: 1,
-                    cast_id: 'your_cast_id', // Replace with actual cast ID if available
-                    input_text: '',
-                    state: '',
-                    transaction_id: '',
-                    address: ''
-                })
-            }).then(response => {
-                if (response.ok) {
-                    response.text().then(text => {
-                        document.open();
-                        document.write(text);
-                        document.close();
-                    });
-                } else {
-                    console.error('POST request failed:', response.statusText);
-                }
-            }).catch(error => {
-                console.error('Error during POST request:', error);
-            });
         }
 
         window.onload = () => {
