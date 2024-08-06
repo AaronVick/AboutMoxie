@@ -10,6 +10,9 @@
     <meta property="fc:frame:button:1" content="Next" />
     <meta property="fc:frame:button:1:action" content="post" />
     <meta property="fc:frame:button:1:target" content="https://about-moxie.vercel.app/moxie2" />
+    <meta property="fc:frame:button:2" content="Moxie.xyz" />
+    <meta property="fc:frame:button:2:action" content="link" />
+    <meta property="fc:frame:button:2:target" content="https://moxie.xyz" />
     <meta property="fc:frame:button:3" content="Check Your Moxie" />
     <meta property="fc:frame:button:3:action" content="link" />
     <meta property="fc:frame:button:3:target" content="https://moxie-frames.airstack.xyz/ctar" />
@@ -60,7 +63,7 @@
     <h1>How To Earn Moxie</h1>
     <img id="moxieImage" src="https://www.aaronvick.com/Moxie/moxiecover.png" alt="Moxie Cover Image">
     <div class="nav-buttons">
-        <button id="backButton" class="hidden" onclick="prevImage()">Back</button>
+        <button id="backButton" class="hidden" onclick="prevImage()">Moxie.xyz</button>
         <button id="nextButton" onclick="nextImage()">Next</button>
         <button id="checkMoxieButton" onclick="checkMoxie()">Check Your Moxie</button>
         <button id="aaronFTButton" class="hidden" onclick="aaronFT()">Aaron's FT</button>
@@ -87,18 +90,22 @@
 
             // Show or hide the back button based on the current index
             if (currentIndex === 0) {
-                backButton.style.display = 'none';
+                backButton.innerHTML = "Moxie.xyz";
+                backButton.onclick = () => window.location.href = 'https://moxie.xyz';
+                backButton.classList.remove('hidden');
             } else {
-                backButton.style.display = 'inline-block';
+                backButton.innerHTML = "Back";
+                backButton.onclick = prevImage;
+                backButton.classList.remove('hidden');
             }
 
             // Update the buttons based on the current index
             if (currentIndex === images.length - 1) {
-                nextButton.style.display = 'none';
-                aaronFTButton.style.display = 'inline-block';
+                nextButton.classList.add('hidden');
+                aaronFTButton.classList.remove('hidden');
             } else {
-                nextButton.style.display = 'inline-block';
-                aaronFTButton.style.display = 'none';
+                nextButton.classList.remove('hidden');
+                aaronFTButton.classList.add('hidden');
             }
         }
 
