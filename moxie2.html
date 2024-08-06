@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="fc:frame" content="vNext" />
-    <meta property="fc:frame:image" content="/moxie2.png" />
-    <meta property="og:image" content="/moxie2.png" />
-    <title>How To Earn Moxie - Step 2</title>
+    <meta property="fc:frame:image" content="https://www.aaronvick.com/Moxie/moxie2.png" />
+    <meta property="og:image" content="https://www.aaronvick.com/Moxie/moxie2.png" />
+    <meta property="fc:frame:button:1" content="Back" />
+    <meta property="fc:frame:button:1:action" content="link" />
+    <meta property="fc:frame:button:1:target" content="https://www.aaronvick.com/Moxie/earnmoxie.html" />
+    <meta property="fc:frame:button:2" content="Next" />
+    <meta property="fc:frame:button:2:action" content="link" />
+    <meta property="fc:frame:button:2:target" content="https://www.aaronvick.com/Moxie/moxie3.html" />
+    <title>How To Earn Moxie</title>
     <style>
         body {
             text-align: center;
@@ -29,10 +35,7 @@
             gap: 10px;
             margin-top: 20px;
         }
-        .nav-buttons a {
-            text-decoration: none;
-        }
-        button {
+        .nav-buttons button {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
@@ -41,17 +44,18 @@
             border: none;
             border-radius: 5px;
         }
-        button:hover {
+        .nav-buttons button:hover {
             background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <h1>How To Earn Moxie</h1>
-    <img src="/moxie2.png" alt="Image 2">
+    <img id="moxieImage" src="https://www.aaronvick.com/Moxie/moxie2.png" alt="Moxie Image 2">
     <div class="nav-buttons">
-        <a href="earnmoxie.html"><button>Back</button></a>
-        <a href="moxie3.html"><button>Next</button></a>
+        <button id="backButton" onclick="prevImage()">Back</button>
+        <button id="nextButton" onclick="nextImage()">Next</button>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
