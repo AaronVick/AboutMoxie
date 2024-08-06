@@ -6,7 +6,7 @@
     <meta property="fc:frame" content="vNext" />
     <meta property="fc:frame:image" content="https://www.aaronvick.com/Moxie/moxiecover.png" />
     <meta property="og:image" content="https://www.aaronvick.com/Moxie/moxiecover.png" />
-    <meta property="fc:frame:post_url" content="https://about-moxie.vercel.app/frame-handler" />
+    <meta property="fc:frame:post_url" content="https://about-moxie.vercel.app/api/frame-handler" />
     <meta property="fc:frame:button:1" content="Next" />
     <meta property="fc:frame:button:1:action" content="post" />
     <meta property="fc:frame:button:1:target" content="https://about-moxie.vercel.app/moxie2" />
@@ -63,7 +63,7 @@
     <h1>How To Earn Moxie</h1>
     <img id="moxieImage" src="https://www.aaronvick.com/Moxie/moxiecover.png" alt="Moxie Cover Image">
     <div class="nav-buttons">
-        <button id="backButton" class="hidden" onclick="prevImage()">Back</button>
+        <button id="backButton" class="hidden" onclick="prevImage()">Moxie.xyz</button>
         <button id="nextButton" onclick="nextImage()">Next</button>
         <button id="checkMoxieButton" onclick="checkMoxie()">Check Your Moxie</button>
         <button id="aaronFTButton" class="hidden" onclick="aaronFT()">Aaron's FT</button>
@@ -90,9 +90,11 @@
 
             // Show or hide the back button based on the current index
             if (currentIndex === 0) {
-                backButton.classList.add('hidden');
+                backButton.textContent = "Moxie.xyz";
+                backButton.onclick = () => window.location.href = 'https://moxie.xyz';
             } else {
-                backButton.classList.remove('hidden');
+                backButton.textContent = "Back";
+                backButton.onclick = () => prevImage();
             }
 
             // Update the buttons based on the current index
