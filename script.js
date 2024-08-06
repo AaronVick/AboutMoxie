@@ -13,15 +13,7 @@ function updateImage() {
     const imageElement = document.getElementById('moxieImage');
     imageElement.src = images[currentIndex];
 
-    const backButton = document.getElementById('backButton');
     const nextButton = document.getElementById('nextButton');
-
-    // Show or hide the back button based on the current index
-    if (currentIndex === 0) {
-        backButton.style.display = 'none';
-    } else {
-        backButton.style.display = 'inline-block';
-    }
 
     // Update the next button based on the current index
     if (currentIndex === images.length - 1) {
@@ -38,13 +30,6 @@ function updateImage() {
 function nextImage() {
     if (currentIndex < images.length - 1) {
         currentIndex++;
-        updateImage();
-    }
-}
-
-function prevImage() {
-    if (currentIndex > 0) {
-        currentIndex--;
         updateImage();
     }
 }
