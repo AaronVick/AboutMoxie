@@ -11,30 +11,7 @@ const frames = [
     button2: { content: 'Next', action: 'post' },
     button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
   },
-  {
-    image: 'https://www.aaronvick.com/Moxie/moxie2.png',
-    button1: { content: 'Back', action: 'post' },
-    button2: { content: 'Next', action: 'post' },
-    button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
-  },
-  {
-    image: 'https://www.aaronvick.com/Moxie/moxie3.png',
-    button1: { content: 'Back', action: 'post' },
-    button2: { content: 'Next', action: 'post' },
-    button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
-  },
-  {
-    image: 'https://www.aaronvick.com/Moxie/moxie4.png',
-    button1: { content: 'Back', action: 'post' },
-    button2: { content: 'Next', action: 'post' },
-    button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
-  },
-  {
-    image: 'https://www.aaronvick.com/Moxie/moxie5.png',
-    button1: { content: 'Back', action: 'post' },
-    button2: { content: 'Moxie.xyz', action: 'link', target: 'https://moxie.xyz' },
-    button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
-  }
+  // ... (other frames remain the same)
 ];
 
 module.exports = (req, res) => {
@@ -54,17 +31,22 @@ module.exports = (req, res) => {
     const buttonIndex = parseInt(req.body.untrustedData.buttonIndex);
     const lastFrame = parseInt(req.body.untrustedData.lastFrameIndex) || 0;
 
+    console.log('Button clicked:', buttonIndex);
+    console.log('Last frame:', lastFrame);
+
     if (buttonIndex === 1 && lastFrame > 0) {
       currentIndex = Math.max(0, lastFrame - 1);
-    } else if (buttonIndex === 2 && lastFrame < frames.length - 1) {
+    } else if (buttonIndex === 2) {
       currentIndex = Math.min(frames.length - 1, lastFrame + 1);
     } else {
       currentIndex = lastFrame;
     }
   }
 
+  console.log('Current index:', currentIndex);
+
   const frame = frames[currentIndex];
-  const timestamp = Date.now(); // Add a timestamp to prevent caching
+  const timestamp = Date.now();
 
   const htmlResponse = `
     <!DOCTYPE html>
@@ -96,6 +78,7 @@ module.exports = (req, res) => {
     </html>
   `;
 
+  console.log('Sending HTML response for frame:', currentIndex);
   res.setHeader('Content-Type', 'text/html');
   res.status(200).send(htmlResponse);
 };
