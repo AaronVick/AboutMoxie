@@ -10,9 +10,6 @@
     <meta property="fc:frame:button:1" content="Next" />
     <meta property="fc:frame:button:1:action" content="post" />
     <meta property="fc:frame:button:1:target" content="https://about-moxie.vercel.app/moxie2" />
-    <meta property="fc:frame:button:2" content="Back" />
-    <meta property="fc:frame:button:2:action" content="post" />
-    <meta property="fc:frame:button:2:target" content="https://about-moxie.vercel.app/moxie1" />
     <meta property="fc:frame:button:3" content="Check Your Moxie" />
     <meta property="fc:frame:button:3:action" content="link" />
     <meta property="fc:frame:button:3:target" content="https://moxie-frames.airstack.xyz/ctar" />
@@ -90,18 +87,18 @@
 
             // Show or hide the back button based on the current index
             if (currentIndex === 0) {
-                backButton.classList.add('hidden');
+                backButton.style.display = 'none';
             } else {
-                backButton.classList.remove('hidden');
+                backButton.style.display = 'inline-block';
             }
 
             // Update the buttons based on the current index
             if (currentIndex === images.length - 1) {
-                nextButton.classList.add('hidden');
-                aaronFTButton.classList.remove('hidden');
+                nextButton.style.display = 'none';
+                aaronFTButton.style.display = 'inline-block';
             } else {
-                nextButton.classList.remove('hidden');
-                aaronFTButton.classList.add('hidden');
+                nextButton.style.display = 'inline-block';
+                aaronFTButton.style.display = 'none';
             }
         }
 
