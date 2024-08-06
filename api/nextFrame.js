@@ -82,13 +82,16 @@ module.exports = (req, res) => {
         <meta property="fc:frame:button:2" content="${frame.button2.content}" />
         <meta property="fc:frame:button:2:action" content="${frame.button2.action}" />
         ${frame.button2.target ? `<meta property="fc:frame:button:2:target" content="${frame.button2.target}" />` : ''}
-        <meta property="fc:frame:image:aspect_ratio" content="1:1" />
+        <meta property="fc:frame:button:3" content="${frame.button3.content}" />
+        <meta property="fc:frame:button:3:action" content="${frame.button3.action}" />
+        <meta property="fc:frame:button:3:target" content="${frame.button3.target}" />
+        <meta property="fc:frame:image:aspect_ratio" content="1.91:1" />
         <meta property="fc:frame:index" content="${currentIndex}" />
         <title>How To Earn Moxie - Frame ${currentIndex + 1}</title>
     </head>
     <body>
         <h1>How To Earn Moxie - Frame ${currentIndex + 1}</h1>
-        <img src="${frame.image}?t=${timestamp}" alt="Moxie Frame ${currentIndex + 1}">
+        <img src="${frame.image}?t=${timestamp}" alt="Moxie Frame ${currentIndex + 1}" width="1200" height="628">
     </body>
     </html>
   `;
