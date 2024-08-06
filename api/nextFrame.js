@@ -1,4 +1,5 @@
 module.exports = (req, res) => {
+  // Set CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
@@ -8,6 +9,10 @@ module.exports = (req, res) => {
     res.status(200).end();
     return;
   }
+
+  // Log the request method and body for debugging
+  console.log('Request method:', req.method);
+  console.log('Request body:', req.body);
 
   res.status(200).json({
     frames: [
