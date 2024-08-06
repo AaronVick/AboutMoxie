@@ -11,6 +11,7 @@ let currentIndex = 0;
 
 function updateImage() {
     const imageElement = document.getElementById('moxieImage');
+    console.log("Updating image to:", images[currentIndex]);
     imageElement.src = images[currentIndex];
     
     const backButton = document.getElementById('backButton');
@@ -24,11 +25,17 @@ function updateImage() {
 
     if (currentIndex === images.length - 1) {
         nextButton.innerText = 'Check Your Moxie';
-        nextButton.onclick = () => window.location.href = 'https://moxie-frames.airstack.xyz/ctar';
+        nextButton.onclick = () => {
+            console.log("Redirecting to Moxie Check");
+            window.location.href = 'https://moxie-frames.airstack.xyz/ctar';
+        };
         
         const tokenButton = document.createElement('button');
         tokenButton.innerText = "Aaron's Token";
-        tokenButton.onclick = () => window.location.href = 'https://moxie-frames.airstack.xyz/sufta?t=235';
+        tokenButton.onclick = () => {
+            console.log("Redirecting to Aaron's Token");
+            window.location.href = 'https://moxie-frames.airstack.xyz/sufta?t=235';
+        };
         tokenButton.style.marginLeft = '10px';
         if (!document.getElementById('tokenButton')) {
             tokenButton.id = 'tokenButton';
@@ -46,6 +53,7 @@ function updateImage() {
 }
 
 function nextImage() {
+    console.log("Next button clicked, currentIndex:", currentIndex);
     if (currentIndex < images.length - 1) {
         currentIndex++;
         updateImage();
@@ -53,10 +61,14 @@ function nextImage() {
 }
 
 function prevImage() {
+    console.log("Back button clicked, currentIndex:", currentIndex);
     if (currentIndex > 0) {
         currentIndex--;
         updateImage();
     }
 }
 
-window.onload = updateImage;
+window.onload = () => {
+    console.log("Window loaded, initializing...");
+    updateImage();
+};
