@@ -11,7 +11,30 @@ const frames = [
     button2: { content: 'Next', action: 'post' },
     button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
   },
-  // ... (other frames remain the same)
+  {
+    image: 'https://www.aaronvick.com/Moxie/moxie2.png',
+    button1: { content: 'Back', action: 'post' },
+    button2: { content: 'Next', action: 'post' },
+    button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
+  },
+  {
+    image: 'https://www.aaronvick.com/Moxie/moxie3.png',
+    button1: { content: 'Back', action: 'post' },
+    button2: { content: 'Next', action: 'post' },
+    button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
+  },
+  {
+    image: 'https://www.aaronvick.com/Moxie/moxie4.png',
+    button1: { content: 'Back', action: 'post' },
+    button2: { content: 'Next', action: 'post' },
+    button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
+  },
+  {
+    image: 'https://www.aaronvick.com/Moxie/moxie5.png',
+    button1: { content: 'Back', action: 'post' },
+    button2: { content: 'Moxie.xyz', action: 'link', target: 'https://moxie.xyz' },
+    button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
+  }
 ];
 
 module.exports = (req, res) => {
@@ -29,24 +52,25 @@ module.exports = (req, res) => {
 
   if (req.method === 'POST' && req.body && req.body.untrustedData) {
     const buttonIndex = parseInt(req.body.untrustedData.buttonIndex);
-    const lastFrame = parseInt(req.body.untrustedData.lastFrameIndex) || 0;
+    currentIndex = parseInt(req.query.index || '0');
 
     console.log('Button clicked:', buttonIndex);
-    console.log('Last frame:', lastFrame);
+    console.log('Current index before:', currentIndex);
 
-    if (buttonIndex === 1 && lastFrame > 0) {
-      currentIndex = Math.max(0, lastFrame - 1);
-    } else if (buttonIndex === 2) {
-      currentIndex = Math.min(frames.length - 1, lastFrame + 1);
-    } else {
-      currentIndex = lastFrame;
+    if (buttonIndex === 1 && currentIndex > 0) {
+      currentIndex--;
+    } else if (buttonIndex === 2 && currentIndex < frames.length - 1) {
+      currentIndex++;
     }
-  }
 
-  console.log('Current index:', currentIndex);
+    console.log('Current index after:', currentIndex);
+  }
 
   const frame = frames[currentIndex];
   const timestamp = Date.now();
+
+  const nextIndex = (currentIndex + 1) % frames.length;
+  const prevIndex = (currentIndex - 1 + frames.length) % frames.length;
 
   const htmlResponse = `
     <!DOCTYPE html>
@@ -57,7 +81,7 @@ module.exports = (req, res) => {
         <meta property="fc:frame" content="vNext" />
         <meta property="fc:frame:image" content="${frame.image}?t=${timestamp}" />
         <meta property="og:image" content="${frame.image}?t=${timestamp}" />
-        <meta property="fc:frame:post_url" content="https://about-moxie.vercel.app/api/nextFrame" />
+        <meta property="fc:frame:post_url" content="https://about-moxie.vercel.app/api/nextFrame?index=${currentIndex}" />
         <meta property="fc:frame:button:1" content="${frame.button1.content}" />
         <meta property="fc:frame:button:1:action" content="${frame.button1.action}" />
         ${frame.button1.target ? `<meta property="fc:frame:button:1:target" content="${frame.button1.target}" />` : ''}
@@ -68,7 +92,6 @@ module.exports = (req, res) => {
         <meta property="fc:frame:button:3:action" content="${frame.button3.action}" />
         <meta property="fc:frame:button:3:target" content="${frame.button3.target}" />
         <meta property="fc:frame:image:aspect_ratio" content="1.91:1" />
-        <meta property="fc:frame:index" content="${currentIndex}" />
         <title>How To Earn Moxie - Frame ${currentIndex + 1}</title>
     </head>
     <body>
