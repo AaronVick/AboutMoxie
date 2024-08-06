@@ -2,32 +2,38 @@ const frames = [
   {
     image: 'https://www.aaronvick.com/Moxie/moxiecover.png',
     button1: { content: 'Moxie.xyz', action: 'link', target: 'https://moxie.xyz' },
-    button2: { content: 'Next', action: 'post' }
+    button2: { content: 'Next', action: 'post' },
+    button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
   },
   {
     image: 'https://www.aaronvick.com/Moxie/moxie1.png',
     button1: { content: 'Back', action: 'post' },
-    button2: { content: 'Next', action: 'post' }
+    button2: { content: 'Next', action: 'post' },
+    button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
   },
   {
     image: 'https://www.aaronvick.com/Moxie/moxie2.png',
     button1: { content: 'Back', action: 'post' },
-    button2: { content: 'Next', action: 'post' }
+    button2: { content: 'Next', action: 'post' },
+    button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
   },
   {
     image: 'https://www.aaronvick.com/Moxie/moxie3.png',
     button1: { content: 'Back', action: 'post' },
-    button2: { content: 'Next', action: 'post' }
+    button2: { content: 'Next', action: 'post' },
+    button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
   },
   {
     image: 'https://www.aaronvick.com/Moxie/moxie4.png',
     button1: { content: 'Back', action: 'post' },
-    button2: { content: 'Next', action: 'post' }
+    button2: { content: 'Next', action: 'post' },
+    button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
   },
   {
     image: 'https://www.aaronvick.com/Moxie/moxie5.png',
     button1: { content: 'Back', action: 'post' },
-    button2: { content: 'Moxie.xyz', action: 'link', target: 'https://moxie.xyz' }
+    button2: { content: 'Moxie.xyz', action: 'link', target: 'https://moxie.xyz' },
+    button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
   }
 ];
 
@@ -58,6 +64,7 @@ module.exports = (req, res) => {
   }
 
   const frame = frames[currentIndex];
+  const timestamp = Date.now(); // Add a timestamp to prevent caching
 
   const htmlResponse = `
     <!DOCTYPE html>
@@ -66,8 +73,8 @@ module.exports = (req, res) => {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta property="fc:frame" content="vNext" />
-        <meta property="fc:frame:image" content="${frame.image}" />
-        <meta property="og:image" content="${frame.image}" />
+        <meta property="fc:frame:image" content="${frame.image}?t=${timestamp}" />
+        <meta property="og:image" content="${frame.image}?t=${timestamp}" />
         <meta property="fc:frame:post_url" content="https://about-moxie.vercel.app/api/nextFrame" />
         <meta property="fc:frame:button:1" content="${frame.button1.content}" />
         <meta property="fc:frame:button:1:action" content="${frame.button1.action}" />
@@ -81,7 +88,7 @@ module.exports = (req, res) => {
     </head>
     <body>
         <h1>How To Earn Moxie - Frame ${currentIndex + 1}</h1>
-        <img src="${frame.image}" alt="Moxie Frame ${currentIndex + 1}">
+        <img src="${frame.image}?t=${timestamp}" alt="Moxie Frame ${currentIndex + 1}">
     </body>
     </html>
   `;
