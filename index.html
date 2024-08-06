@@ -1,139 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="fc:frame" content="vNext" />
-    <meta property="fc:frame:image" content="https://www.aaronvick.com/Moxie/moxiecover.png" />
-    <meta property="og:image" content="https://www.aaronvick.com/Moxie/moxiecover.png" />
-    <meta property="fc:frame:post_url" content="https://about-moxie.vercel.app/api/frame-handler" />
-    <meta property="fc:frame:button:1" content="Next" />
-    <meta property="fc:frame:button:1:action" content="post" />
-    <meta property="fc:frame:button:1:target" content="nextFrame" />
-    <meta property="fc:frame:button:2" content="Moxie.xyz" />
-    <meta property="fc:frame:button:2:action" content="link" />
-    <meta property="fc:frame:button:2:target" content="https://moxie.xyz" />
-    <meta property="fc:frame:button:3" content="Check Your Moxie" />
-    <meta property="fc:frame:button:3:action" content="link" />
-    <meta property="fc:frame:button:3:target" content="https://moxie-frames.airstack.xyz/ctar" />
-    <meta property="fc:frame:button:4" content="Aaron's FT" />
-    <meta property="fc:frame:button:4:action" content="link" />
-    <meta property="fc:frame:button:4:target" content="https://moxie-frames.airstack.xyz/sufta?t=235" />
-    <title>How To Earn Moxie</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        .nav-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .nav-buttons button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        .nav-buttons button:hover {
-            background-color: #0056b3;
-        }
-        .hidden {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <h1>How To Earn Moxie</h1>
-    <img id="moxieImage" src="https://www.aaronvick.com/Moxie/moxiecover.png" alt="Moxie Cover Image">
-    <div class="nav-buttons">
-        <button id="backButton" class="hidden" onclick="prevImage()">Moxie.xyz</button>
-        <button id="nextButton" onclick="nextImage()">Next</button>
-        <button id="checkMoxieButton" onclick="checkMoxie()">Check Your Moxie</button>
-        <button id="aaronFTButton" class="hidden" onclick="aaronFT()">Aaron's FT</button>
-    </div>
-    <script>
-        const images = [
-            "https://www.aaronvick.com/Moxie/moxiecover.png",
-            "https://www.aaronvick.com/Moxie/moxie2.png",
-            "https://www.aaronvick.com/Moxie/moxie3.png",
-            "https://www.aaronvick.com/Moxie/moxie4.png",
-            "https://www.aaronvick.com/Moxie/moxie5.png"
-        ];
+export default function handler(req, res) {
+  const { buttonIndex } = req.body;
 
-        let currentIndex = 0;
+  let nextFrame;
 
-        function updateImage() {
-            const imageElement = document.getElementById('moxieImage');
-            imageElement.src = images[currentIndex];
+  switch(buttonIndex) {
+    case 1:
+      nextFrame = "/moxie2";
+      break;
+    case 2:
+      nextFrame = "/moxie3";
+      break;
+    case 3:
+      nextFrame = "/moxie4";
+      break;
+    case 4:
+      nextFrame = "/moxie5";
+      break;
+    case 5:
+      nextFrame = "/moxie6";
+      break;
+    default:
+      nextFrame = "/";
+      break;
+  }
 
-            const backButton = document.getElementById('backButton');
-            const nextButton = document.getElementById('nextButton');
-            const checkMoxieButton = document.getElementById('checkMoxieButton');
-            const aaronFTButton = document.getElementById('aaronFTButton');
-
-            // Show or hide the back button based on the current index
-            if (currentIndex === 0) {
-                backButton.classList.remove('hidden');
-                backButton.textContent = 'Moxie.xyz';
-                backButton.onclick = function() { window.location.href = 'https://moxie.xyz'; };
-            } else {
-                backButton.classList.remove('hidden');
-                backButton.textContent = 'Back';
-                backButton.onclick = function() { prevImage(); };
-            }
-
-            // Update the buttons based on the current index
-            if (currentIndex === images.length - 1) {
-                nextButton.classList.add('hidden');
-                aaronFTButton.classList.remove('hidden');
-            } else {
-                nextButton.classList.remove('hidden');
-                aaronFTButton.classList.add('hidden');
-            }
-        }
-
-        function nextImage() {
-            if (currentIndex < images.length - 1) {
-                currentIndex++;
-                updateImage();
-            }
-        }
-
-        function prevImage() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateImage();
-            }
-        }
-
-        function checkMoxie() {
-            window.location.href = 'https://moxie-frames.airstack.xyz/ctar';
-        }
-
-        function aaronFT() {
-            window.location.href = 'https://moxie-frames.airstack.xyz/sufta?t=235';
-        }
-
-        window.onload = () => {
-            updateImage();
-        };
-    </script>
-</body>
-</html>
+  res.status(200).json({
+    nextFrameUrl: nextFrame,
+  });
+}
