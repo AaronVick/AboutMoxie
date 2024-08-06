@@ -37,8 +37,8 @@ function updateImage() {
             window.location.href = 'https://moxie-frames.airstack.xyz/sufta?t=235';
         };
         tokenButton.style.marginLeft = '10px';
+        tokenButton.id = 'tokenButton';
         if (!document.getElementById('tokenButton')) {
-            tokenButton.id = 'tokenButton';
             document.querySelector('.nav-buttons').appendChild(tokenButton);
         }
     } else {
