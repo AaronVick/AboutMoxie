@@ -6,9 +6,6 @@
     <meta property="fc:frame" content="vNext" />
     <meta property="fc:frame:image" content="https://www.aaronvick.com/Moxie/moxiecover.png" />
     <meta property="og:image" content="https://www.aaronvick.com/Moxie/moxiecover.png" />
-    <meta property="fc:frame:button:1" content="Next" />
-    <meta property="fc:frame:button:1:action" content="link" />
-    <meta property="fc:frame:button:1:target" content="https://www.aaronvick.com/Moxie/moxie2.html" />
     <title>How To Earn Moxie</title>
     <style>
         body {
@@ -50,8 +47,64 @@
     <h1>How To Earn Moxie</h1>
     <img id="moxieImage" src="https://www.aaronvick.com/Moxie/moxiecover.png" alt="Moxie Cover Image">
     <div class="nav-buttons">
+        <button id="backButton" style="display:none;" onclick="prevImage()">Back</button>
         <button id="nextButton" onclick="nextImage()">Next</button>
     </div>
-    <script src="script.js"></script>
+    <script>
+        const images = [
+            "https://www.aaronvick.com/Moxie/moxiecover.png",
+            "https://www.aaronvick.com/Moxie/moxie2.png",
+            "https://www.aaronvick.com/Moxie/moxie3.png",
+            "https://www.aaronvick.com/Moxie/moxie4.png",
+            "https://www.aaronvick.com/Moxie/moxie5.png",
+            "https://www.aaronvick.com/Moxie/moxie6.png"
+        ];
+
+        let currentIndex = 0;
+
+        function updateImage() {
+            const imageElement = document.getElementById('moxieImage');
+            imageElement.src = images[currentIndex];
+
+            const backButton = document.getElementById('backButton');
+            const nextButton = document.getElementById('nextButton');
+
+            // Show or hide the back button based on the current index
+            if (currentIndex === 0) {
+                backButton.style.display = 'none';
+            } else {
+                backButton.style.display = 'inline-block';
+            }
+
+            // Update the next button based on the current index
+            if (currentIndex === images.length - 1) {
+                nextButton.innerText = 'Check Your Moxie';
+                nextButton.onclick = () => {
+                    window.location.href = 'https://moxie-frames.airstack.xyz/ctar';
+                };
+            } else {
+                nextButton.innerText = 'Next';
+                nextButton.onclick = nextImage;
+            }
+        }
+
+        function nextImage() {
+            if (currentIndex < images.length - 1) {
+                currentIndex++;
+                updateImage();
+            }
+        }
+
+        function prevImage() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateImage();
+            }
+        }
+
+        window.onload = () => {
+            updateImage();
+        };
+    </script>
 </body>
 </html>
