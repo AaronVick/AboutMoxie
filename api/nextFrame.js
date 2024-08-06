@@ -1,5 +1,37 @@
+const frames = [
+  {
+    image: 'https://www.aaronvick.com/Moxie/moxiecover.png',
+    button1: { content: 'Moxie.xyz', action: 'link', target: 'https://moxie.xyz' },
+    button2: { content: 'Next', action: 'post' }
+  },
+  {
+    image: 'https://www.aaronvick.com/Moxie/moxie1.png',
+    button1: { content: 'Back', action: 'post' },
+    button2: { content: 'Next', action: 'post' }
+  },
+  {
+    image: 'https://www.aaronvick.com/Moxie/moxie2.png',
+    button1: { content: 'Back', action: 'post' },
+    button2: { content: 'Next', action: 'post' }
+  },
+  {
+    image: 'https://www.aaronvick.com/Moxie/moxie3.png',
+    button1: { content: 'Back', action: 'post' },
+    button2: { content: 'Next', action: 'post' }
+  },
+  {
+    image: 'https://www.aaronvick.com/Moxie/moxie4.png',
+    button1: { content: 'Back', action: 'post' },
+    button2: { content: 'Next', action: 'post' }
+  },
+  {
+    image: 'https://www.aaronvick.com/Moxie/moxie5.png',
+    button1: { content: 'Back', action: 'post' },
+    button2: { content: 'Moxie.xyz', action: 'link', target: 'https://moxie.xyz' }
+  }
+];
+
 module.exports = (req, res) => {
-  // Set CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
@@ -10,11 +42,23 @@ module.exports = (req, res) => {
     return;
   }
 
-  // Log the request method and body for debugging
-  console.log('Request method:', req.method);
-  console.log('Request body:', req.body);
+  let currentIndex = 0;
 
-  // HTML response with meta tags
+  if (req.method === 'POST' && req.body && req.body.untrustedData) {
+    const buttonIndex = parseInt(req.body.untrustedData.buttonIndex);
+    const lastFrame = parseInt(req.body.untrustedData.lastFrameIndex) || 0;
+
+    if (buttonIndex === 1 && lastFrame > 0) {
+      currentIndex = Math.max(0, lastFrame - 1);
+    } else if (buttonIndex === 2 && lastFrame < frames.length - 1) {
+      currentIndex = Math.min(frames.length - 1, lastFrame + 1);
+    } else {
+      currentIndex = lastFrame;
+    }
+  }
+
+  const frame = frames[currentIndex];
+
   const htmlResponse = `
     <!DOCTYPE html>
     <html lang="en">
@@ -22,18 +66,22 @@ module.exports = (req, res) => {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta property="fc:frame" content="vNext" />
-        <meta property="fc:frame:image" content="https://www.aaronvick.com/Moxie/moxie2.png" />
-        <meta property="og:image" content="https://www.aaronvick.com/Moxie/moxie2.png" />
+        <meta property="fc:frame:image" content="${frame.image}" />
+        <meta property="og:image" content="${frame.image}" />
         <meta property="fc:frame:post_url" content="https://about-moxie.vercel.app/api/nextFrame" />
-        <meta property="fc:frame:button:1" content="Next" />
-        <meta property="fc:frame:button:2" content="Moxie.xyz" />
-        <meta property="fc:frame:button:2:action" content="link" />
-        <meta property="fc:frame:button:2:target" content="https://moxie.xyz" />
-        <title>How To Earn Moxie - Next Frame</title>
+        <meta property="fc:frame:button:1" content="${frame.button1.content}" />
+        <meta property="fc:frame:button:1:action" content="${frame.button1.action}" />
+        ${frame.button1.target ? `<meta property="fc:frame:button:1:target" content="${frame.button1.target}" />` : ''}
+        <meta property="fc:frame:button:2" content="${frame.button2.content}" />
+        <meta property="fc:frame:button:2:action" content="${frame.button2.action}" />
+        ${frame.button2.target ? `<meta property="fc:frame:button:2:target" content="${frame.button2.target}" />` : ''}
+        <meta property="fc:frame:image:aspect_ratio" content="1:1" />
+        <meta property="fc:frame:index" content="${currentIndex}" />
+        <title>How To Earn Moxie - Frame ${currentIndex + 1}</title>
     </head>
     <body>
-        <h1>How To Earn Moxie - Next Frame</h1>
-        <img src="https://www.aaronvick.com/Moxie/moxie2.png" alt="Moxie Next Image">
+        <h1>How To Earn Moxie - Frame ${currentIndex + 1}</h1>
+        <img src="${frame.image}" alt="Moxie Frame ${currentIndex + 1}">
     </body>
     </html>
   `;
