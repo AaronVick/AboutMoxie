@@ -13,12 +13,6 @@
     <meta property="fc:frame:button:2" content="Moxie.xyz" />
     <meta property="fc:frame:button:2:action" content="link" />
     <meta property="fc:frame:button:2:target" content="https://moxie.xyz" />
-    <meta property="fc:frame:button:3" content="Check Your Moxie" />
-    <meta property="fc:frame:button:3:action" content="post" />
-    <meta property="fc:frame:button:3:target" content="https://about-moxie.vercel.app/api/checkMoxie" />
-    <meta property="fc:frame:button:4" content="Aaron's FT" />
-    <meta property="fc:frame:button:4:action" content="post" />
-    <meta property="fc:frame:button:4:target" content="https://about-moxie.vercel.app/api/aaronFT" />
     <title>How To Earn Moxie</title>
     <style>
         body {
@@ -54,19 +48,14 @@
         .nav-buttons button:hover {
             background-color: #0056b3;
         }
-        .hidden {
-            display: none;
-        }
     </style>
 </head>
 <body>
     <h1>How To Earn Moxie</h1>
     <img id="moxieImage" src="https://www.aaronvick.com/Moxie/moxiecover.png" alt="Moxie Cover Image">
     <div class="nav-buttons">
-        <button id="backButton" class="hidden" onclick="prevImage()">Back</button>
+        <button id="backButton" class="hidden" onclick="prevImage()">Moxie.xyz</button>
         <button id="nextButton" onclick="nextImage()">Next</button>
-        <button id="checkMoxieButton" onclick="checkMoxie()">Check Your Moxie</button>
-        <button id="aaronFTButton" class="hidden" onclick="aaronFT()">Aaron's FT</button>
     </div>
     <script>
         const images = [
@@ -85,21 +74,19 @@
 
             const backButton = document.getElementById('backButton');
             const nextButton = document.getElementById('nextButton');
-            const checkMoxieButton = document.getElementById('checkMoxieButton');
-            const aaronFTButton = document.getElementById('aaronFTButton');
 
             if (currentIndex === 0) {
-                backButton.classList.add('hidden');
+                backButton.textContent = "Moxie.xyz";
+                backButton.onclick = () => window.open("https://moxie.xyz", "_blank");
             } else {
-                backButton.classList.remove('hidden');
+                backButton.textContent = "Back";
+                backButton.onclick = prevImage;
             }
 
             if (currentIndex === images.length - 1) {
                 nextButton.classList.add('hidden');
-                aaronFTButton.classList.remove('hidden');
             } else {
                 nextButton.classList.remove('hidden');
-                aaronFTButton.classList.add('hidden');
             }
         }
 
@@ -115,14 +102,6 @@
                 currentIndex--;
                 updateImage();
             }
-        }
-
-        function checkMoxie() {
-            window.location.href = 'https://moxie-frames.airstack.xyz/ctar';
-        }
-
-        function aaronFT() {
-            window.location.href = 'https://moxie-frames.airstack.xyz/sufta?t=235';
         }
 
         window.onload = () => {
