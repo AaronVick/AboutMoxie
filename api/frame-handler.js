@@ -1,6 +1,6 @@
 export default function handler(req, res) {
     if (req.method === 'POST') {
-        // Handle POST request
+        // Handle the POST request
         res.status(200).json({ message: 'Frame data processed successfully.' });
     } else {
         res.setHeader('Allow', ['POST']);
