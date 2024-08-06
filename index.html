@@ -6,9 +6,6 @@
     <meta property="fc:frame" content="vNext" />
     <meta property="fc:frame:image" content="https://www.aaronvick.com/Moxie/moxiecover.png" />
     <meta property="og:image" content="https://www.aaronvick.com/Moxie/moxiecover.png" />
-    <meta property="fc:frame:button:1" content="Next" />
-    <meta property="fc:frame:button:1:action" content="link" />
-    <meta property="fc:frame:button:1:target" content="#" />
     <title>How To Earn Moxie</title>
     <style>
         body {
@@ -55,6 +52,8 @@
     <div class="nav-buttons">
         <button id="backButton" class="hidden" onclick="prevImage()">Back</button>
         <button id="nextButton" onclick="nextImage()">Next</button>
+        <button id="checkMoxieButton" onclick="checkMoxie()">Check Your Moxie</button>
+        <button id="aaronFTButton" class="hidden" onclick="aaronFT()">Aaron's FT</button>
     </div>
     <script>
         const images = [
@@ -74,6 +73,8 @@
 
             const backButton = document.getElementById('backButton');
             const nextButton = document.getElementById('nextButton');
+            const checkMoxieButton = document.getElementById('checkMoxieButton');
+            const aaronFTButton = document.getElementById('aaronFTButton');
 
             // Show or hide the back button based on the current index
             if (currentIndex === 0) {
@@ -82,15 +83,13 @@
                 backButton.classList.remove('hidden');
             }
 
-            // Update the next button based on the current index
+            // Update the buttons based on the current index
             if (currentIndex === images.length - 1) {
-                nextButton.innerText = 'Check Your Moxie';
-                nextButton.onclick = () => {
-                    window.location.href = 'https://moxie-frames.airstack.xyz/ctar';
-                };
+                nextButton.classList.add('hidden');
+                aaronFTButton.classList.remove('hidden');
             } else {
-                nextButton.innerText = 'Next';
-                nextButton.onclick = nextImage;
+                nextButton.classList.remove('hidden');
+                aaronFTButton.classList.add('hidden');
             }
         }
 
@@ -106,6 +105,14 @@
                 currentIndex--;
                 updateImage();
             }
+        }
+
+        function checkMoxie() {
+            window.location.href = 'https://moxie-frames.airstack.xyz/ctar';
+        }
+
+        function aaronFT() {
+            window.location.href = 'https://aaronft.example.com';
         }
 
         window.onload = () => {
