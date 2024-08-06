@@ -88,7 +88,6 @@
             const checkMoxieButton = document.getElementById('checkMoxieButton');
             const aaronFTButton = document.getElementById('aaronFTButton');
 
-            // Show or hide the back button based on the current index
             if (currentIndex === 0) {
                 backButton.textContent = "Moxie.xyz";
                 backButton.onclick = () => window.location.href = 'https://moxie.xyz';
@@ -97,7 +96,6 @@
                 backButton.onclick = () => prevImage();
             }
 
-            // Update the buttons based on the current index
             if (currentIndex === images.length - 1) {
                 nextButton.classList.add('hidden');
                 aaronFTButton.classList.remove('hidden');
