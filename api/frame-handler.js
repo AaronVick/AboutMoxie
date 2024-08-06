@@ -1,9 +1,21 @@
 export default function handler(req, res) {
-    if (req.method === 'POST') {
-        // Handle the POST request
-        res.status(200).json({ message: 'Frame data processed successfully.' });
-    } else {
-        res.setHeader('Allow', ['POST']);
-        res.status(405).end(`Method ${req.method} Not Allowed`);
-    }
+  const { buttonIndex } = req.body;
+
+  let nextFrame;
+
+  switch(buttonIndex) {
+    case 1:
+      nextFrame = "/api/nextFrame";
+      break;
+    case 2:
+      nextFrame = "https://moxie.xyz";
+      break;
+    default:
+      nextFrame = "/";
+      break;
+  }
+
+  res.status(200).json({
+    nextFrameUrl: nextFrame,
+  });
 }
