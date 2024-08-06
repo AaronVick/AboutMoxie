@@ -3,11 +3,10 @@
   "builds": [
     { "src": "*.html", "use": "@vercel/static" },
     { "src": "*.png", "use": "@vercel/static" },
-    { "src": "*.js", "use": "@vercel/node" },
     { "src": "api/**/*.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/api/nextFrame", "dest": "api/nextFrame.js" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
