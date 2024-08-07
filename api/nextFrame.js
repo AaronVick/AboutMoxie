@@ -32,8 +32,7 @@ const frames = [
   {
     image: 'https://www.aaronvick.com/Moxie/moxie5.png',
     button1: { content: 'Back', action: 'post' },
-    button 2: { content: 'Claim Moxie', action: 'post', target: 'https://moxie-frames.airstack.xyz/ctar' },
-    button3: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
+    button2: { content: 'Share', action: 'link', target: 'https://warpcast.com/~/compose?text=Earning+Moxie+Frame+Created+by+%40aaronv.eth+&embeds%5B%5D=https://about-moxie.vercel.app/' }
   }
 ];
 
